@@ -1,0 +1,13 @@
+#########################
+# .gitignore file for Xcode4 and Xcode5 Source projects
+# Version 2.6
+# For latest version, see: http://stackoverflow.com/questions/49478/git-ignore-file-for-xcode-projects
+#########################
+
+.DS_Store
+.Trashes
+*.swp
+*.lock
+*~.nib
+xcuserdata/
+*.framework/
