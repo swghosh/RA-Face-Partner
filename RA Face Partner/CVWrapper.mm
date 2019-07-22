@@ -87,4 +87,32 @@ using namespace cv;
     return finalImage;
 }
 
+// Methods for face detection
+
+- (NSString *)getHaarCascadeFrontalFaceFilePath {
+    NSString *xmlFilePath = [[NSBundle mainBundle]pathForResource:@"haarcascade_frontalface_alt2" ofType:@"xml"];
+    return xmlFilePath;
+}
+
+- (NSString *)getNewImagePath: (NSString *)fileExtension {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths firstObject];
+    
+    NSDateFormatter *dateFmt = [NSDateFormatter new];
+    [dateFmt setDateFormat:@"dd-MM-yyyy_hh.mm.ss.a"];
+    NSDate *dateNow = [NSDate new];
+    NSString *timeStr = [dateFmt stringFromDate:dateNow];
+    
+    int uid = 1;
+    
+    NSString *filename = [NSString stringWithFormat: @"%@_%d.%@", timeStr, uid, fileExtension];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:filename];
+    while([[NSFileManager defaultManager] fileExistsAtPath:dataPath]) {
+        filename = [NSString stringWithFormat: @"%@_%d.%@", timeStr, uid, fileExtension];
+        dataPath = [documentsDirectory stringByAppendingPathComponent:filename];
+        uid = uid + 1;
+    }
+    return dataPath;
+}
+
 @end
