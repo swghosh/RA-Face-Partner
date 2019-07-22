@@ -18,6 +18,7 @@
 		C8F9279722E6195C008AA798 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F9279622E6195B008AA798 /* CoreMedia.framework */; };
 		C8F9279922E61963008AA798 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F9279822E61963008AA798 /* CoreFoundation.framework */; };
 		C8F9279B22E6196A008AA798 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F9279A22E6196A008AA798 /* AssetsLibrary.framework */; };
+		C8F927A322E61C40008AA798 /* CVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8F927A222E61C40008AA798 /* CVWrapper.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,9 @@
 		C8F9279622E6195B008AA798 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C8F9279822E61963008AA798 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		C8F9279A22E6196A008AA798 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		C8F927A022E61C3F008AA798 /* RA Face Partner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RA Face Partner-Bridging-Header.h"; sourceTree = "<group>"; };
+		C8F927A122E61C40008AA798 /* CVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVWrapper.h; sourceTree = "<group>"; };
+		C8F927A222E61C40008AA798 /* CVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CVWrapper.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,11 +79,14 @@
 			isa = PBXGroup;
 			children = (
 				C8F9277B22E6187C008AA798 /* AppDelegate.swift */,
+				C8F927A122E61C40008AA798 /* CVWrapper.h */,
+				C8F927A222E61C40008AA798 /* CVWrapper.mm */,
 				C8F9277D22E6187C008AA798 /* ViewController.swift */,
 				C8F9277F22E6187C008AA798 /* Main.storyboard */,
 				C8F9278222E61881008AA798 /* Assets.xcassets */,
 				C8F9278422E61881008AA798 /* LaunchScreen.storyboard */,
 				C8F9278722E61881008AA798 /* Info.plist */,
+				C8F927A022E61C3F008AA798 /* RA Face Partner-Bridging-Header.h */,
 			);
 			path = "RA Face Partner";
 			sourceTree = "<group>";
@@ -130,6 +137,7 @@
 				TargetAttributes = {
 					C8F9277722E6187B008AA798 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -170,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8F9277E22E6187C008AA798 /* ViewController.swift in Sources */,
+				C8F927A322E61C40008AA798 /* CVWrapper.mm in Sources */,
 				C8F9277C22E6187C008AA798 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,6 +325,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 687NW7TG3Z;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -329,6 +339,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.swghosh.RA-Face-Partner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RA Face Partner/RA Face Partner-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -338,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 687NW7TG3Z;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -351,6 +364,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.swghosh.RA-Face-Partner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RA Face Partner/RA Face Partner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
