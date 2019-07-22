@@ -24,7 +24,7 @@ using namespace cv;
 // Copyright © OpenCV iOS
 // https://docs.opencv.org/2.4/doc/tutorials/ios/image_manipulation/image_manipulation.html#opencviosimagemanipulation
 
-- (cv::Mat)cvMatFromUIImage:(UIImage *)image
++ (cv::Mat)cvMatFromUIImage:(UIImage *)image
 {
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
     CGFloat cols = image.size.width;
@@ -50,7 +50,7 @@ using namespace cv;
 // Copyright © OpenCV iOS
 // https://docs.opencv.org/2.4/doc/tutorials/ios/image_manipulation/image_manipulation.html#opencviosimagemanipulation
 
--(UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
++ (UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
 {
     NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.total()];
     CGColorSpaceRef colorSpace;
@@ -89,12 +89,12 @@ using namespace cv;
 
 // Methods for face detection
 
-- (NSString *)getHaarCascadeFrontalFaceFilePath {
++ (NSString *)getHaarCascadeFrontalFaceFilePath {
     NSString *xmlFilePath = [[NSBundle mainBundle]pathForResource:@"haarcascade_frontalface_alt2" ofType:@"xml"];
     return xmlFilePath;
 }
 
-- (NSString *)getNewImagePath: (NSString *)fileExtension {
++ (NSString *)getNewImagePath: (NSString *)fileExtension {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths firstObject];
     
@@ -113,6 +113,67 @@ using namespace cv;
         uid = uid + 1;
     }
     return dataPath;
+}
+
++ (cv::Rect)increaseRect: (cv::Rect)rect byPercentage: (float)percentage maxWidth:(int)widthLimit maxHeight:(int)heightLimit {
+    
+    int extraHeight = (int)(rect.height * percentage);
+    int extraWidth = (int)(rect.width * percentage);
+    
+    rect.width += extraWidth;
+    rect.height += extraHeight;
+    
+    rect.x -= extraWidth / 2;
+    rect.y -= extraHeight / 2;
+    
+    // handle Rect out of bounds
+    if(rect.x < 0) rect.x = 0;
+    if(rect.y < 0) rect.y = 0;
+    
+    if(rect.x + rect.width > widthLimit) rect.width = widthLimit - rect.x;
+    if(rect.y + rect.height > heightLimit) rect.height = heightLimit - rect.y;
+    
+    return rect;
+}
+
+// using JPG images!
++ (void)writeImage: (Mat)source {
+    string newPath = string([[CVWrapper getNewImagePath: @"jpg"] UTF8String]);
+    cvtColor(source, source, COLOR_RGB2BGR);
+    imwrite(newPath, source);
+    cout << "Wrote image to path " << newPath;
+}
+
+const float INCREASE_PERCENT = 0.6f;
+
++ (int)detectFacesAndSave:(Mat)source {
+    string hccXmlPath = string([[CVWrapper getHaarCascadeFrontalFaceFilePath] UTF8String]);
+    CascadeClassifier faceCascade = CascadeClassifier(hccXmlPath);
+    
+    vector<cv::Rect> faces;
+    Mat grayImg;
+    
+    cvtColor(source, grayImg, COLOR_RGB2GRAY);
+    faceCascade.detectMultiScale(grayImg, faces);
+    
+    for(int i = 0; i < faces.size(); i++) {
+        faces[i] = [CVWrapper increaseRect:faces[i] byPercentage:INCREASE_PERCENT maxWidth:grayImg.cols maxHeight:grayImg.rows];
+        Mat faceFrame = source(faces[i]);
+        [CVWrapper writeImage:faceFrame];
+    }
+    
+    return (int)faces.size();
+}
+
++ (NSInteger) detectFacesAndSave:(UIImage *) source transpose: (BOOL)transposeFlag flip: (BOOL)flipFlag  {
+    Mat frame = [CVWrapper cvMatFromUIImage:source];
+    
+    if(transposeFlag) transpose(frame, frame);
+    if(flipFlag) flip(frame, frame, 1); // horizontal flip
+    
+    int facesCount = [CVWrapper detectFacesAndSave:frame];
+    
+    return [[NSNumber numberWithInt:facesCount] integerValue];
 }
 
 @end

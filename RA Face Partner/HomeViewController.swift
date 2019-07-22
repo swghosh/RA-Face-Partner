@@ -41,6 +41,8 @@ class HomeViewController: UIViewController {
         captureSession.startRunning()
     }
 
+    let detectedFaceCount = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

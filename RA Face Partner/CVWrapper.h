@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CVWrapper : NSObject
 
 + (NSString *)openCVVersionInfo;
++ (NSInteger) detectFacesAndSave:(UIImage *) source transpose: (BOOL)transposeFlag flip: (BOOL)flipFlag;
 
 @end
 
