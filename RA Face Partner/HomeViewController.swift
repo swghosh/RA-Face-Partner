@@ -9,7 +9,7 @@
 import UIKit
 import AVKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     @IBOutlet weak var cameraView: CameraView!
     
@@ -40,8 +40,6 @@ class HomeViewController: UIViewController {
         
         captureSession.startRunning()
     }
-
-    let detectedFaceCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +47,20 @@ class HomeViewController: UIViewController {
         print("Using \(CVWrapper.openCVVersionInfo())")
         cameraSetup()
     }
+    
+    var detectedFaceCount = 0
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        let photoData = photo.fileDataRepresentation()
+        
+        let image = UIImage(data: photoData!)
+        // for front camera use no flip
+        detectedFaceCount = detectedFaceCount + CVWrapper.faceDetector(image!, transpose: true, flip: false)
+        print("\(detectedFaceCount) face(s) detected so far.")
+    }
 
-
+    @IBAction func clickButton(_ sender: Any) {
+        let photoSettings = AVCapturePhotoSettings()
+        photoOutput.capturePhoto(with: photoSettings, delegate: self)
+    }
 }
 

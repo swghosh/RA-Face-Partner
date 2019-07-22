@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C80D1DAB22E6281C00E9323E /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = C80D1DAA22E6281B00E9323E /* haarcascade_frontalface_alt.xml */; };
 		C8C0D93622E62EC80098A4EE /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0D93522E62EC80098A4EE /* CameraView.swift */; };
+		C8C0D93822E63EEC0098A4EE /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = C8C0D93722E63EEC0098A4EE /* haarcascade_frontalface_alt2.xml */; };
 		C8F9277C22E6187C008AA798 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9277B22E6187C008AA798 /* AppDelegate.swift */; };
 		C8F9277E22E6187C008AA798 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9277D22E6187C008AA798 /* HomeViewController.swift */; };
 		C8F9278122E6187C008AA798 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F9277F22E6187C008AA798 /* Main.storyboard */; };
@@ -24,8 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C80D1DAA22E6281B00E9323E /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt.xml; sourceTree = "<group>"; };
 		C8C0D93522E62EC80098A4EE /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		C8C0D93722E63EEC0098A4EE /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
 		C8F9277822E6187B008AA798 /* RA Face Partner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RA Face Partner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F9277B22E6187C008AA798 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8F9277D22E6187C008AA798 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 				C8F9277B22E6187C008AA798 /* AppDelegate.swift */,
 				C8F927A022E61C3F008AA798 /* RA Face Partner-Bridging-Header.h */,
 				C8F927A422E61CF9008AA798 /* PrefixHeader.pch */,
-				C80D1DAA22E6281B00E9323E /* haarcascade_frontalface_alt.xml */,
+				C8C0D93722E63EEC0098A4EE /* haarcascade_frontalface_alt2.xml */,
 			);
 			path = "RA Face Partner";
 			sourceTree = "<group>";
@@ -172,7 +172,7 @@
 			files = (
 				C8F9278622E61881008AA798 /* LaunchScreen.storyboard in Resources */,
 				C8F9278322E61881008AA798 /* Assets.xcassets in Resources */,
-				C80D1DAB22E6281C00E9323E /* haarcascade_frontalface_alt.xml in Resources */,
+				C8C0D93822E63EEC0098A4EE /* haarcascade_frontalface_alt2.xml in Resources */,
 				C8F9278122E6187C008AA798 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
