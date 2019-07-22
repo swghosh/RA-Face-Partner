@@ -110,7 +110,7 @@ const float INCREASE_PERCENT = 0.6f;
     Mat grayImg;
     
     cvtColor(source, grayImg, COLOR_RGB2GRAY);
-    faceCascade.detectMultiScale(grayImg, faces, 1.2, 5.0);
+    faceCascade.detectMultiScale(grayImg, faces, 1.35, 5.0);
     
     for(int i = 0; i < faces.size(); i++) {
         faces[i] = [CVWrapper increaseRect:faces[i] byPercentage:INCREASE_PERCENT maxWidth:grayImg.cols maxHeight:grayImg.rows];
