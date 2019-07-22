@@ -12,6 +12,7 @@ import AVKit
 class HomeViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     @IBOutlet weak var cameraView: CameraView!
+    @IBOutlet weak var countLabel: UILabel!
     
     let captureSession = AVCaptureSession.init()
     let photoOutput = AVCapturePhotoOutput()
@@ -56,6 +57,7 @@ class HomeViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         // for front camera use no flip
         detectedFaceCount = detectedFaceCount + CVWrapper.faceDetector(image!, transpose: true, flip: false)
         print("\(detectedFaceCount) face(s) detected so far.")
+        countLabel.text = "\(detectedFaceCount)"
     }
 
     @IBAction func clickButton(_ sender: Any) {
