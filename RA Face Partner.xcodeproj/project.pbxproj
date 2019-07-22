@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C80D1DAB22E6281C00E9323E /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = C80D1DAA22E6281B00E9323E /* haarcascade_frontalface_alt.xml */; };
+		C8C0D93622E62EC80098A4EE /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0D93522E62EC80098A4EE /* CameraView.swift */; };
 		C8F9277C22E6187C008AA798 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9277B22E6187C008AA798 /* AppDelegate.swift */; };
-		C8F9277E22E6187C008AA798 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9277D22E6187C008AA798 /* ViewController.swift */; };
+		C8F9277E22E6187C008AA798 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9277D22E6187C008AA798 /* HomeViewController.swift */; };
 		C8F9278122E6187C008AA798 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F9277F22E6187C008AA798 /* Main.storyboard */; };
 		C8F9278322E61881008AA798 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8F9278222E61881008AA798 /* Assets.xcassets */; };
 		C8F9278622E61881008AA798 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F9278422E61881008AA798 /* LaunchScreen.storyboard */; };
@@ -24,9 +25,10 @@
 
 /* Begin PBXFileReference section */
 		C80D1DAA22E6281B00E9323E /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt.xml; sourceTree = "<group>"; };
+		C8C0D93522E62EC80098A4EE /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		C8F9277822E6187B008AA798 /* RA Face Partner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RA Face Partner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F9277B22E6187C008AA798 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C8F9277D22E6187C008AA798 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C8F9277D22E6187C008AA798 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C8F9278022E6187C008AA798 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C8F9278222E61881008AA798 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8F9278522E61881008AA798 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,10 +86,11 @@
 				C8F927A122E61C40008AA798 /* CVWrapper.h */,
 				C8F927A222E61C40008AA798 /* CVWrapper.mm */,
 				C8F927A422E61CF9008AA798 /* PrefixHeader.pch */,
-				C8F9277D22E6187C008AA798 /* ViewController.swift */,
+				C8F9277D22E6187C008AA798 /* HomeViewController.swift */,
 				C8F9277F22E6187C008AA798 /* Main.storyboard */,
 				C8F9278222E61881008AA798 /* Assets.xcassets */,
 				C8F9278422E61881008AA798 /* LaunchScreen.storyboard */,
+				C8C0D93522E62EC80098A4EE /* CameraView.swift */,
 				C8F9278722E61881008AA798 /* Info.plist */,
 				C80D1DAA22E6281B00E9323E /* haarcascade_frontalface_alt.xml */,
 				C8F927A022E61C3F008AA798 /* RA Face Partner-Bridging-Header.h */,
@@ -181,9 +184,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8F9277E22E6187C008AA798 /* ViewController.swift in Sources */,
+				C8F9277E22E6187C008AA798 /* HomeViewController.swift in Sources */,
 				C8F927A322E61C40008AA798 /* CVWrapper.mm in Sources */,
 				C8F9277C22E6187C008AA798 /* AppDelegate.swift in Sources */,
+				C8C0D93622E62EC80098A4EE /* CameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
