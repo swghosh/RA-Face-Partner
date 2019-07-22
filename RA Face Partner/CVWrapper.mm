@@ -14,77 +14,33 @@ using namespace cv;
 
 @implementation CVWrapper
 
+// Copyright © Dmytro Nasyrov, Pharos Production Inc.
+// https://github.com/dmytronasyrov/Swift-with-OpenCV/blob/master/OpenCV/Classes/OpenCVWrapper.mm
+
++ (Mat)matFrom:(UIImage *)source {
+    
+    CGImageRef image = CGImageCreateCopy(source.CGImage);
+    CGFloat cols = CGImageGetWidth(image);
+    CGFloat rows = CGImageGetHeight(image);
+    Mat result(rows, cols, CV_8UC4);
+    
+    CGBitmapInfo bitmapFlags = kCGImageAlphaNoneSkipLast | kCGBitmapByteOrderDefault;
+    size_t bitsPerComponent = 8;
+    size_t bytesPerRow = result.step[0];
+    CGColorSpaceRef colorSpace = CGImageGetColorSpace(image);
+    
+    CGContextRef context = CGBitmapContextCreate(result.data, cols, rows, bitsPerComponent, bytesPerRow, colorSpace, bitmapFlags);
+    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, cols, rows), image);
+    CGContextRelease(context);
+    
+    return result;
+}
+
 // Copyright © Yiwei Ni
 // https://medium.com/@yiweini/opencv-with-swift-step-by-step-c3cc1d1ee5f1
 
 + (NSString *)openCVVersionInfo {
     return [NSString stringWithFormat:@"OpenCV Version %s", CV_VERSION];
-}
-
-// Copyright © OpenCV iOS
-// https://docs.opencv.org/2.4/doc/tutorials/ios/image_manipulation/image_manipulation.html#opencviosimagemanipulation
-
-+ (cv::Mat)cvMatFromUIImage:(UIImage *)image
-{
-    CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
-    CGFloat cols = image.size.width;
-    CGFloat rows = image.size.height;
-    
-    cv::Mat cvMat(rows, cols, CV_8UC4); // 8 bits per component, 4 channels (color channels + alpha)
-    
-    CGContextRef contextRef = CGBitmapContextCreate(cvMat.data,                 // Pointer to  data
-                                                    cols,                       // Width of bitmap
-                                                    rows,                       // Height of bitmap
-                                                    8,                          // Bits per component
-                                                    cvMat.step[0],              // Bytes per row
-                                                    colorSpace,                 // Colorspace
-                                                    kCGImageAlphaNoneSkipLast |
-                                                    kCGBitmapByteOrderDefault); // Bitmap info flags
-    
-    CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), image.CGImage);
-    CGContextRelease(contextRef);
-    
-    return cvMat;
-}
-
-// Copyright © OpenCV iOS
-// https://docs.opencv.org/2.4/doc/tutorials/ios/image_manipulation/image_manipulation.html#opencviosimagemanipulation
-
-+ (UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
-{
-    NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.total()];
-    CGColorSpaceRef colorSpace;
-    
-    if (cvMat.elemSize() == 1) {
-        colorSpace = CGColorSpaceCreateDeviceGray();
-    } else {
-        colorSpace = CGColorSpaceCreateDeviceRGB();
-    }
-    
-    CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
-    
-    // Creating CGImage from cv::Mat
-    CGImageRef imageRef = CGImageCreate(cvMat.cols,                                 //width
-                                        cvMat.rows,                                 //height
-                                        8,                                          //bits per component
-                                        8 * cvMat.elemSize(),                       //bits per pixel
-                                        cvMat.step[0],                            //bytesPerRow
-                                        colorSpace,                                 //colorspace
-                                        kCGImageAlphaNone|kCGBitmapByteOrderDefault,// bitmap info
-                                        provider,                                   //CGDataProviderRef
-                                        NULL,                                       //decode
-                                        false,                                      //should interpolate
-                                        kCGRenderingIntentDefault                   //intent
-                                        );
-    
-    
-    // Getting UIImage from CGImage
-    UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    CGDataProviderRelease(provider);
-    CGColorSpaceRelease(colorSpace);
-    
-    return finalImage;
 }
 
 // Methods for face detection
@@ -141,7 +97,7 @@ using namespace cv;
     string newPath = string([[CVWrapper getNewImagePath: @"jpg"] UTF8String]);
     cvtColor(source, source, COLOR_RGB2BGR);
     imwrite(newPath, source);
-    cout << "Wrote image to path " << newPath;
+    cout << "Wrote image to path " << newPath << "\n";
 }
 
 const float INCREASE_PERCENT = 0.6f;
@@ -154,7 +110,7 @@ const float INCREASE_PERCENT = 0.6f;
     Mat grayImg;
     
     cvtColor(source, grayImg, COLOR_RGB2GRAY);
-    faceCascade.detectMultiScale(grayImg, faces);
+    faceCascade.detectMultiScale(grayImg, faces, 1.2, 5.0);
     
     for(int i = 0; i < faces.size(); i++) {
         faces[i] = [CVWrapper increaseRect:faces[i] byPercentage:INCREASE_PERCENT maxWidth:grayImg.cols maxHeight:grayImg.rows];
@@ -165,9 +121,8 @@ const float INCREASE_PERCENT = 0.6f;
     return (int)faces.size();
 }
 
-+ (NSInteger) detectFacesAndSave:(UIImage *) source transpose: (BOOL)transposeFlag flip: (BOOL)flipFlag  {
-    Mat frame = [CVWrapper cvMatFromUIImage:source];
-    
++ (NSInteger) faceDetector:(UIImage *) source transpose: (BOOL)transposeFlag flip: (BOOL)flipFlag  {
+    Mat frame = [CVWrapper matFrom:source];
     if(transposeFlag) transpose(frame, frame);
     if(flipFlag) flip(frame, frame, 1); // horizontal flip
     
