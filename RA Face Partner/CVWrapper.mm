@@ -11,4 +11,8 @@
 
 @implementation CVWrapper
 
++ (NSString *)openCVVersionInfo {
+    return [NSString stringWithFormat:@"OpenCV Version %s", CV_VERSION];
+}
+
 @end

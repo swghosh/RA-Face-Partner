@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CVWrapper : NSObject
 
++ (NSString *)openCVVersionInfo;
+
 @end
 
 NS_ASSUME_NONNULL_END
