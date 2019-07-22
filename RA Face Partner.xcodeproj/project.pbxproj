@@ -39,6 +39,7 @@
 		C8F927A022E61C3F008AA798 /* RA Face Partner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RA Face Partner-Bridging-Header.h"; sourceTree = "<group>"; };
 		C8F927A122E61C40008AA798 /* CVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVWrapper.h; sourceTree = "<group>"; };
 		C8F927A222E61C40008AA798 /* CVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CVWrapper.mm; sourceTree = "<group>"; };
+		C8F927A422E61CF9008AA798 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +82,7 @@
 				C8F9277B22E6187C008AA798 /* AppDelegate.swift */,
 				C8F927A122E61C40008AA798 /* CVWrapper.h */,
 				C8F927A222E61C40008AA798 /* CVWrapper.mm */,
+				C8F927A422E61CF9008AA798 /* PrefixHeader.pch */,
 				C8F9277D22E6187C008AA798 /* ViewController.swift */,
 				C8F9277F22E6187C008AA798 /* Main.storyboard */,
 				C8F9278222E61881008AA798 /* Assets.xcassets */,
@@ -332,6 +334,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/RA Face Partner/PrefixHeader.pch";
 				INFOPLIST_FILE = "RA Face Partner/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -357,6 +360,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/RA Face Partner/PrefixHeader.pch";
 				INFOPLIST_FILE = "RA Face Partner/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
